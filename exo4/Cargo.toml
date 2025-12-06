@@ -1,14 +1,12 @@
 [package]
-name = "exo3"
+name = "exo4"
 version = "0.1.0"
 edition = "2024"
 
-[dependencies]
-
 [[bin]]
-name = "exo3-part1"
+name = "exo4-part1"
 path = "src/part1.rs"
 
 [[bin]]
-name = "exo3-part2"
+name = "exo4-part2"
 path = "src/part2.rs"
