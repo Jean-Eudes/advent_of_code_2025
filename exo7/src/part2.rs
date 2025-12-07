@@ -39,8 +39,10 @@ fn main() {
                 Field::Empty => {
                     // Je remet dans la position les rayons de la position précédente
                     if beam.contains_key(&position) {
-                        let count = next_beam.entry(position).or_insert(0);
-                        *count += beam[&position];
+                        next_beam
+                            .entry(position)
+                            .and_modify(|count| *count += beam[&position])
+                            .or_insert(beam[&position]);
                     }
                 }
                 Field::Splitter => {
@@ -52,13 +54,17 @@ fn main() {
                     */
 
                     if beam.contains_key(&position) {
-                        let count1 = next_beam.entry(position - 1).or_insert(0);
-                        *count1 += beam.get(&(position)).unwrap_or(&0);
-                        let count2 = next_beam.entry(position + 1).or_insert(0);
-                        *count2 += beam.get(&(position)).unwrap_or(&0);
-                        let count = beam.get(&position).unwrap();
+                        let current_value = beam.get(&position).unwrap_or(&0);
+                        next_beam
+                            .entry(position - 1)
+                            .and_modify(|count| *count += current_value)
+                            .or_insert(*current_value);
+                        next_beam
+                            .entry(position + 1)
+                            .and_modify(|count| *count += current_value)
+                            .or_insert(*current_value);
 
-                        number_of_timeline += count;
+                        number_of_timeline += current_value;
                     }
                 }
             }
