@@ -4,15 +4,15 @@ use std::fs::read_to_string;
 
 #[derive(PartialEq)]
 enum Field {
-    EMPTY,
-    FULL,
+    Empty,
+    Full,
 }
 
 impl Display for Field {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         match self {
-            Field::EMPTY => write!(f, "."),
-            Field::FULL => write!(f, "@"),
+            Field::Empty => write!(f, "."),
+            Field::Full => write!(f, "@"),
         }
     }
 }
@@ -45,7 +45,7 @@ impl Board {
 
     fn cell(&self, x: i64, y: i64) -> &Field {
         if x >= self.width || y >= self.fields.len() as i64 / self.width || x < 0 || y < 0 {
-            return &Field::EMPTY;
+            return &Field::Empty;
         };
         &self.fields[x as usize + y as usize * self.width as usize]
     }
@@ -53,28 +53,28 @@ impl Board {
     fn neighbors(&self, x: i64, y: i64) -> usize {
         let mut number_of_neighbors = 0;
 
-        if *self.cell(x - 1, y - 1) == Field::FULL {
+        if *self.cell(x - 1, y - 1) == Field::Full {
             number_of_neighbors += 1;
         }
-        if *self.cell(x, y - 1) == Field::FULL {
+        if *self.cell(x, y - 1) == Field::Full {
             number_of_neighbors += 1;
         }
-        if *self.cell(x - 1, y) == Field::FULL {
+        if *self.cell(x - 1, y) == Field::Full {
             number_of_neighbors += 1;
         }
-        if *self.cell(x + 1, y) == Field::FULL {
+        if *self.cell(x + 1, y) == Field::Full {
             number_of_neighbors += 1;
         }
-        if *self.cell(x, y + 1) == Field::FULL {
+        if *self.cell(x, y + 1) == Field::Full {
             number_of_neighbors += 1;
         }
-        if *self.cell(x + 1, y + 1) == Field::FULL {
+        if *self.cell(x + 1, y + 1) == Field::Full {
             number_of_neighbors += 1;
         }
-        if *self.cell(x - 1, y + 1) == Field::FULL {
+        if *self.cell(x - 1, y + 1) == Field::Full {
             number_of_neighbors += 1;
         }
-        if *self.cell(x + 1, y - 1) == Field::FULL {
+        if *self.cell(x + 1, y - 1) == Field::Full {
             number_of_neighbors += 1;
         }
 
@@ -97,9 +97,9 @@ impl Board {
 impl From<char> for Field {
     fn from(c: char) -> Field {
         match c {
-            '.' => Field::EMPTY,
-            '@' => Field::FULL,
-            _ => Field::EMPTY,
+            '.' => Field::Empty,
+            '@' => Field::Full,
+            _ => Field::Empty,
         }
     }
 }
@@ -128,7 +128,7 @@ fn main() {
     for y in 0..board.height  {
         for x in 0..board.width  {
             let i = board.neighbors(x, y);
-            if i < 4 && *board.cell(x, y) == Field::FULL {
+            if i < 4 && *board.cell(x, y) == Field::Full {
                 result += 1;
             }
         }
