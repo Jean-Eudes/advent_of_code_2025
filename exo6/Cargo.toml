@@ -1,0 +1,15 @@
+[package]
+name = "exo6"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+regex =  { version =  "1.12.2", features = ["default"] }
+
+[[bin]]
+name = "exo6-part1"
+path = "src/part1.rs"
+
+[[bin]]
+name = "exo6-part2"
+path = "src/part2.rs"
