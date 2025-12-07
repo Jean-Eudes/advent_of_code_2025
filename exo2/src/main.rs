@@ -63,9 +63,8 @@ impl Range {
     fn all_invalid_id(&self) -> Vec<i64> {
         let mut vec1 = vec![];
         for t in self.start..=self.end {
-            if (!t.is_valid()) {
+            if !t.is_valid() {
                 vec1.push(t);
-            } else {
             }
         }
 
