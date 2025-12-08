@@ -1,0 +1,12 @@
+[package]
+name = "exo8"
+version = "0.1.0"
+edition = "2024"
+
+[[bin]]
+name = "exo8-part1"
+path = "src/part1.rs"
+
+[[bin]]
+name = "exo8-part2"
+path = "src/part2.rs"
