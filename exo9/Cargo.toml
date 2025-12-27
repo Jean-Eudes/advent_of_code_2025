@@ -1,0 +1,19 @@
+[package]
+name = "exo9"
+version = "0.1.0"
+edition = "2024"
+
+[[bin]]
+name = "exo9-part1"
+path = "src/part1.rs"
+
+[[bin]]
+name = "exo9-part2"
+path = "src/part2.rs"
+
+[[bin]]
+name = "exo9-draw"
+path = "src/draw.rs"
+
+[dependencies]
+minifb = "0.28.0"
