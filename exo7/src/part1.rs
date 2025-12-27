@@ -26,7 +26,6 @@ fn main() {
     let mut beam = HashSet::new();
 
     for line in string.lines() {
-
         let mut next_beam = HashSet::new();
 
         for (position, char) in line.chars().enumerate() {

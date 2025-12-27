@@ -12,7 +12,6 @@ fn main() {
 
     let number_of_digit = 11;
 
-
     for number in numbers_to_parse {
         let mut numbers = Vec::with_capacity(number_of_digit);
         let mut number_work = number;

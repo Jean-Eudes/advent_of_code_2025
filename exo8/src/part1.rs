@@ -33,7 +33,6 @@ struct Circuit<'a> {
     points: Vec<&'a Point>,
 }
 
-
 impl<'a> Circuit<'a> {
     fn new() -> Self {
         Self { points: Vec::new() }
@@ -92,7 +91,9 @@ impl<'a> Circuits<'a> {
                 .circuits
                 .iter_mut()
                 .filter(|circuit| circuit.contains(edge))
-                .fold( Circuit::new(), |circuit1, circuit2| circuit1.merge(circuit2));
+                .fold(Circuit::new(), |circuit1, circuit2| {
+                    circuit1.merge(circuit2)
+                });
             self.circuits.retain(|circuit| !circuit.contains(edge));
             circuit.add_edge(edge);
             self.circuits.push(circuit);
@@ -102,7 +103,10 @@ impl<'a> Circuits<'a> {
     fn result(mut self) -> u64 {
         self.circuits.sort_by_key(|a| a.num_points());
         self.circuits.reverse();
-        self.circuits.iter().take(3).fold(1, |acc, circuit| acc * circuit.num_points() as u64)
+        self.circuits
+            .iter()
+            .take(3)
+            .fold(1, |acc, circuit| acc * circuit.num_points() as u64)
     }
 }
 

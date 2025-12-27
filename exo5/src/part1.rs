@@ -22,7 +22,6 @@ fn main() {
     let mut result = 0;
 
     'outer: for line in string.lines() {
-
         if line == "" {
             part += 1;
             continue;
@@ -45,7 +44,6 @@ fn main() {
                     continue 'outer;
                 }
             }
-
         }
     }
 

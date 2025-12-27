@@ -125,8 +125,8 @@ fn main() {
 
     let mut result = 0;
 
-    for y in 0..board.height  {
-        for x in 0..board.width  {
+    for y in 0..board.height {
+        for x in 0..board.width {
             let i = board.neighbors(x, y);
             if i < 4 && *board.cell(x, y) == Field::Full {
                 result += 1;

@@ -49,7 +49,7 @@ impl<'a> Circuit<'a> {
     fn contains(&self, edge: &Edge<'_>) -> bool {
         self.points
             .iter()
-            .any(|e| *e == edge.point1 || *e == edge.point2)
+            .any(|&e| e == edge.point1 || e == edge.point2)
     }
 
     fn merge(&self, other: &Self) -> Self {

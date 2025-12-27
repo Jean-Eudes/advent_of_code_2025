@@ -42,7 +42,7 @@ fn main() {
                     number_of_zero += (100 - result) / 100;
                 }
                 if result <= 0 && initial_pos == 0 {
-                    number_of_zero += (100 - result) / 100 -1 ;
+                    number_of_zero += (100 - result) / 100 - 1;
                 }
 
                 if result <= 0 {

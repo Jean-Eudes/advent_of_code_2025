@@ -73,7 +73,6 @@ impl Range {
 }
 
 fn main() {
-
     let mut result = Vec::new();
     for line in read_to_string("exo2/example/example2.txt").unwrap().lines() {
         let split = line.split(",");
@@ -91,5 +90,4 @@ fn main() {
         result2 += vec.iter().sum::<i64>();
     }
     println!("result is : {result2}");
-
 }

@@ -49,13 +49,11 @@ fn main() {
         if operator != ' ' {
             let operator = Operator::from(operator);
             result += match operator {
-                Operator::Add => {columns.iter().fold(0, |acc, x| acc + x) }
-                Operator::Multiply => {columns.iter().fold(1, |acc, x| acc * x) }
+                Operator::Add => columns.iter().fold(0, |acc, x| acc + x),
+                Operator::Multiply => columns.iter().fold(1, |acc, x| acc * x),
             };
             columns.clear();
-        } 
-        
-
+        }
     }
 
     println!("result: {}", result);
