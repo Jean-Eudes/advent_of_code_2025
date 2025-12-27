@@ -1,0 +1,18 @@
+[package]
+name = "exo10"
+version = "0.1.0"
+edition = "2024"
+
+[[bin]]
+name = "exo10-part1"
+path = "src/part1.rs"
+
+[[bin]]
+name = "exo10-part2"
+path = "src/part2.rs"
+
+[dependencies]
+regex = "1.12.2"
+regex-macro = "0.3.0"
+itertools = "0.14.0"
+nalgebra = "0.34.1"
