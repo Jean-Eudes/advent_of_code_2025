@@ -28,7 +28,6 @@ fn main() {
             graph.add_node(root.unwrap().to_string(), edge.to_string());
         }
     }
-    println!("{:?}", graph.nodes);
 
     let number = traverse_graph(&graph, "you");
     println!("result: {}", number);
