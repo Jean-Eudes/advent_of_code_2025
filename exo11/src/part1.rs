@@ -28,12 +28,12 @@ fn main() {
         }
     }
 
-    let number = traverse_graph(&graph, "you");
+    let number = count_path(&graph, "you");
     println!("result: {}", number);
 
 }
 
-fn traverse_graph(graph: &Graph, start_node: &str) -> usize {
+fn count_path(graph: &Graph, start_node: &str) -> usize {
 
     if let Some(edges) = graph.nodes.get(start_node) {
         let mut result = 0;
@@ -41,7 +41,7 @@ fn traverse_graph(graph: &Graph, start_node: &str) -> usize {
             if *edge == "out" {
                 result += 1;
             }
-            result += traverse_graph(graph, edge);
+            result += count_path(graph, edge);
         }
 
         return result;
