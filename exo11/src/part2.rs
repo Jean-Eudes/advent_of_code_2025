@@ -25,14 +25,16 @@ impl<'a> Graph<'a> {
             for edge in edges.clone() {
                 if edge == end_node {
                     result += 1;
+                    continue;
                 }
-                let map = self.cache.get(edge);
-                if map.is_none() {
-                    let i = self.count_path(edge, end_node);
-                    result += i;
-                    self.cache.insert(edge, i);
-                } else {
-                    result += map.unwrap();
+                let number_of_path = self.cache.get(edge);
+                result += match number_of_path {
+                    None => {
+                        let number_children_path = self.count_path(edge, end_node);
+                        self.cache.insert(edge, number_children_path);
+                        number_children_path
+                    }
+                    Some(number_of_path) => *number_of_path,
                 }
             }
 
@@ -76,5 +78,9 @@ fn main() {
 
     let result2_final = number3 * number2 * number1;
 
-    println!("result final: {} sur {}", result1_final + result2_final, graph.count_path("svr", "out"));
+    println!(
+        "result final: {} sur {}",
+        result1_final + result2_final,
+        graph.count_path("svr", "out")
+    );
 }
