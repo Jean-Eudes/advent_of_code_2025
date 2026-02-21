@@ -8,9 +8,8 @@ struct Graph<'a> {
 
 impl<'a> Graph<'a> {
     fn new() -> Self {
-        let map = HashMap::new();
         Graph {
-            edges: map,
+            edges: HashMap::new(),
             cache: HashMap::new(),
         }
     }

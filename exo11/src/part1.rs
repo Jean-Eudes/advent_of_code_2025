@@ -7,8 +7,9 @@ struct Graph<'a> {
 
 impl<'a> Graph<'a> {
     fn new() -> Self {
-        let map = HashMap::new();
-        Graph { edges: map }
+        Graph {
+            edges: HashMap::new(),
+        }
     }
 
     fn add_edge(&mut self, a: &'a str, b: &'a str) {
@@ -33,7 +34,6 @@ fn main() {
 }
 
 fn count_path(graph: &Graph, start_node: &str) -> usize {
-
     if let Some(edges) = graph.edges.get(start_node) {
         let mut result = 0;
         for edge in edges {
