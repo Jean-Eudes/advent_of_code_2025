@@ -27,15 +27,13 @@ impl<'a> Graph<'a> {
                     result += 1;
                     continue;
                 }
-                let number_of_path = self.cache.get(edge);
-                result += match number_of_path {
-                    None => {
-                        let number_children_path = self.count_path(edge, end_node);
-                        self.cache.insert(edge, number_children_path);
-                        number_children_path
-                    }
-                    Some(number_of_path) => *number_of_path,
-                }
+                result += if let Some(&cached) = self.cache.get(edge) {
+                    cached
+                } else {
+                    let number_path_children = self.count_path(edge, end_node);
+                    self.cache.insert(edge, number_path_children);
+                    number_path_children
+                };
             }
 
             return result;
