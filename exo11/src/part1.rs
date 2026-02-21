@@ -2,17 +2,17 @@ use std::collections::HashMap;
 use std::fs::read_to_string;
 
 struct Graph<'a> {
-    nodes: HashMap<&'a str, Vec<&'a str>>,
+    edges: HashMap<&'a str, Vec<&'a str>>,
 }
 
 impl<'a> Graph<'a> {
     fn new() -> Self {
         let map = HashMap::new();
-        Graph { nodes: map }
+        Graph { edges: map }
     }
 
-    fn add_node(&mut self, a: &'a str, b: &'a str) {
-        self.nodes.entry(a).or_insert_with(Vec::new).push(b);
+    fn add_edge(&mut self, a: &'a str, b: &'a str) {
+        self.edges.entry(a).or_insert_with(Vec::new).push(b);
     }
 }
 
@@ -24,18 +24,17 @@ fn main() {
         let (root, edges) = line.split_once(":").unwrap();
         let split = edges.trim().split_whitespace();
         for edge in split {
-            graph.add_node(root, edge);
+            graph.add_edge(root, edge);
         }
     }
 
     let number = count_path(&graph, "you");
     println!("result: {}", number);
-
 }
 
 fn count_path(graph: &Graph, start_node: &str) -> usize {
 
-    if let Some(edges) = graph.nodes.get(start_node) {
+    if let Some(edges) = graph.edges.get(start_node) {
         let mut result = 0;
         for edge in edges {
             if *edge == "out" {
