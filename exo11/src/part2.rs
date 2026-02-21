@@ -3,7 +3,7 @@ use std::fs::read_to_string;
 
 struct Graph<'a> {
     edges: HashMap<&'a str, Vec<&'a str>>,
-    cache: HashMap<&'a str, usize>,
+    cache: HashMap<(&'a str, &'a str), usize>,
 }
 
 impl<'a> Graph<'a> {
@@ -27,11 +27,11 @@ impl<'a> Graph<'a> {
                     result += 1;
                     continue;
                 }
-                result += if let Some(&cached) = self.cache.get(edge) {
+                result += if let Some(&cached) = self.cache.get(&(edge, end_node)) {
                     cached
                 } else {
                     let number_path_children = self.count_path(edge, end_node);
-                    self.cache.insert(edge, number_path_children);
+                    self.cache.insert((edge, end_node), number_path_children);
                     number_path_children
                 };
             }
@@ -39,10 +39,6 @@ impl<'a> Graph<'a> {
             return result;
         }
         0
-    }
-
-    fn clear_cache(&mut self) {
-        self.cache.clear();
     }
 }
 
@@ -60,23 +56,14 @@ fn main() {
 
     println!("--------------------------------");
     let number1 = graph.count_path("svr", "fft");
-    graph.clear_cache();
     let number2 = graph.count_path("fft", "dac");
-    graph.clear_cache();
-
     let number3 = graph.count_path("dac", "out");
-    graph.clear_cache();
 
     let result1_final = number3 * number2 * number1;
 
     let number1 = graph.count_path("svr", "dac");
-    graph.clear_cache();
-
     let number2 = graph.count_path("dac", "fft");
-    graph.clear_cache();
-
     let number3 = graph.count_path("fft", "out");
-    graph.clear_cache();
 
     let result2_final = number3 * number2 * number1;
 
