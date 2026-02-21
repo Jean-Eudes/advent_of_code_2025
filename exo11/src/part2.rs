@@ -40,6 +40,10 @@ impl<'a> Graph<'a> {
         }
         0
     }
+
+    fn clear_cache(&mut self) {
+        self.cache.clear();
+    }
 }
 
 fn main() {
@@ -56,23 +60,23 @@ fn main() {
 
     println!("--------------------------------");
     let number1 = graph.count_path("svr", "fft");
-    graph.cache.clear();
+    graph.clear_cache();
     let number2 = graph.count_path("fft", "dac");
-    graph.cache.clear();
+    graph.clear_cache();
 
     let number3 = graph.count_path("dac", "out");
-    graph.cache.clear();
+    graph.clear_cache();
 
     let result1_final = number3 * number2 * number1;
 
     let number1 = graph.count_path("svr", "dac");
-    graph.cache.clear();
+    graph.clear_cache();
 
     let number2 = graph.count_path("dac", "fft");
-    graph.cache.clear();
+    graph.clear_cache();
 
     let number3 = graph.count_path("fft", "out");
-    graph.cache.clear();
+    graph.clear_cache();
 
     let result2_final = number3 * number2 * number1;
 
