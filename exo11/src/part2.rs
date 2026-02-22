@@ -6,13 +6,16 @@ struct Graph<'a> {
     cache: HashMap<(&'a str, &'a str), usize>,
 }
 
-impl<'a> Graph<'a> {
-    fn new() -> Self {
+impl Default for Graph<'_> {
+    fn default() -> Self {
         Graph {
             edges: HashMap::new(),
             cache: HashMap::new(),
         }
     }
+}
+
+impl<'a> Graph<'a> {
 
     fn add_edge(&mut self, a: &'a str, b: &'a str) {
         self.edges.entry(a).or_insert_with(Vec::new).push(b);
@@ -43,7 +46,7 @@ impl<'a> Graph<'a> {
 
 fn main() {
     let string = read_to_string("exo11/example/example2.txt").unwrap();
-    let mut graph = Graph::new();
+    let mut graph = Graph::default();
 
     for line in string.lines() {
         let (root, edges) = line.split_once(":").unwrap();
